@@ -11,29 +11,48 @@ var minCount = 1;
 var maxCount = 16;
 
 $(function(){
-$('#literal-plus').on('click', function(){
-  var inputCount = $('#literal-area .unit').length;
-  if (inputCount < maxCount){
-    var element = $('#literal-area .unit:last-child').clone(true);
-    var inputList = element[0].querySelectorAll('input[type="text"]');
-    for (var i = 0; i < inputList.length; i++) {
-      inputList[i].value = "";
-    }
-    $('#literal-area .unit').parent().append(element);
+
+    $('#literal-plus').on('click', function() {
+      var inputCount = $('#literal-area .unit').length;
+      if (inputCount < maxCount) {
+        var element = $('#literal-area .unit:last-child').clone(true);
+        var inputList = element[0].querySelectorAll('input[type="text"]');
+        for (var i = 0; i < inputList.length; i++) {
+          inputList[i].value = "";
+        }
+        $('#literal-area .unit').parent().append(element);
+      }
+    });
+    $('.literal-minus').on('click', function() {
+      var inputCount = $('#literal-area .unit').length;
+      if (inputCount > minCount) {
+        $(this).parents('.unit').remove();
+      }
+    });
+
+});
+
+function download(content, filename) {
+    const a = document.createElement("a");
+    document.body.appendChild(a);
+    a.style = "display:none";
+
+    const blob = new Blob([content], { type: "octet/stream" });
+    const url = window.URL.createObjectURL(blob);
+
+    a.href = url;
+    a.download = filename;
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.parentNode.removeChild(a);
   }
-});
-$('.literal-minus').on('click', function(){
-  var inputCount = $('#literal-area .unit').length;
-  if (inputCount > minCount){
-    $(this).parents('.unit').remove();
-  }
-});
-});
 </script>
 </head>
 <body>
-<header>
 
+<div class="container">
+
+<div class="container-fluid">
   <h2> Basic Infomation </h2>
 
 <table>
@@ -50,6 +69,8 @@ $('.literal-minus').on('click', function(){
   <td><input type="text" id="author" name="author"></td>
   </tr>
 </table>
+
+</div><div class="container-fluid">
 
 <h2> Code </h2>
 <textarea id="code" name="code"></textarea>
@@ -77,10 +98,12 @@ $('.literal-minus').on('click', function(){
   
   <input type="button" id="literal-plus" class="btn btn-primary" value="+" />
 
-  
+</div><div class="container-fluid">
 
 <h2> Imports </h2>
 <textarea id="imports" name="imports"></textarea>
+
+</div></div>
 
 </body>
 </html>
