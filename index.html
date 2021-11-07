@@ -31,12 +31,12 @@ $('.liternal-minus').on('click', function(){// イベントごと複製してい
 <body>
 <header>
 
-## Basic Infomation
+  <h2> Basic Infomation </h2>
 
 <table>
   <tr>
-    <th>Title</th>
-    <th><input type="text" id="title" name="title"></td>
+    <td>Title</td>
+    <td><input type="text" id="title" name="title"></td>
   </tr>
   <tr>
     <td>Shortcut</td>
@@ -48,20 +48,36 @@ $('.liternal-minus').on('click', function(){// イベントごと複製してい
   </tr>
 </table>
 
-## Code
+<h2> Code </h2>
 <textarea id="code" name="code"></textarea>
 
-## Liternals
+<h2> Liternals </h2>
 
-<div id="input_pluralBox">
-    <div id="input_plural">
-        <input type="text" class="form-control" placeholder="サンプルテキストサンプルテキストサンプルテキスト">
-        <input type="button" value="＋" class="add pluralBtn">
-        <input type="button" value="－" class="del pluralBtn">
+ 
+  <div id="demo-area" class="form-group">
+    <div class="unit">
+        <table>
+            <tr>
+                <td>ID</td><td><input type="text" id="id" /></td>
+            </tr>
+            <tr>
+                <td>ToolTip</td><td><input type="text" id="ToolTip" /></td>
+            </tr>
+            <tr>
+                <td>Default</td><td><input type="text" id="default" /></td>
+            </tr>
+        </table>
+      <div class="demo-minus input-group-append">
+        <span class="btn btn-danger">-</span>
+      </div>
     </div>
-</div>
+  </div>
+  
+  <div id="demo-plus" class="btn btn-primary">+</div>
+  </div>
+  
 
-## Imports
+<h2> Imports </h2>
 <textarea id="imports" name="imports"></textarea>
 
 </body>
