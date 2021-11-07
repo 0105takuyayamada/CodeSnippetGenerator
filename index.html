@@ -17,7 +17,7 @@ $(function(){
       var inputCount = $('#literal-area .unit').length;
       if (inputCount < maxliteralCount) {
         var element = $('#literal-area .unit:last-child').clone(true);
-        var inputList = element[0].querySelectorAll('input[type="text"]');
+        var inputList = element[0].querySelectorAll('input-group');
         for (var i = 0; i < inputList.length; i++) {
           inputList[i].value = "";
         }
