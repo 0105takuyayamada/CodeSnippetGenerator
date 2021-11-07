@@ -9,6 +9,7 @@
 
 var minliteralCount = 1;
 var maxliteralCount = 16;
+var literalAreas;
 
 $(function(){
 
@@ -49,7 +50,7 @@ function CreateFile() {
 				<![CDATA[` + document.getElementById("code").value + `]]>
 			</Code>`;
             
-        var literalforms = $('#literal-area .unit');
+        var literalforms = $('#literal-area .unit').parent().querySelectorAll(`form-group`);
         var literals;
         for (var i = 0; i < literalforms.length; i++)
         {
@@ -152,21 +153,17 @@ function Download() {
 <h2> Liternals </h2>
 
   <div id="literal-area" class="form-group">
-    <div class="unit input-group">
-        <table>
-            <tr>
-                <td>ID</td><td><input type="text" class="id" /></td>
-            </tr>
-            <tr>
-                <td>ToolTip</td><td><input type="text" id="toolTip" /></td>
-            </tr>
-            <tr>
-                <td>Default</td><td><input type="text" id="default" /></td>
-            </tr>
-        </table>
-        <div class="literal-minus input-group-append">
-            <span class="btn btn-danger">-</span>
-      </div>
+    <div class="input-group">
+        <span class="input-group-text">ID</span>
+        <input type="text" class="form-control" id="id">
+    </div>
+    <div class="input-group">
+        <span class="input-group-text">ToolTip</span>
+        <input type="text" class="form-control" id="toolTip">
+    </div>
+    <div class="input-group">
+        <span class="input-group-text">Default</span>
+        <input type="text" class="form-control" id="default">
     </div>
   </div>
   
