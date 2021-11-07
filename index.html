@@ -7,24 +7,27 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="main.js">
 // 追加
-$('#liternal-plus').on('click', function(){
-  var inputCount = $('#demo-area .unit').length;
+var minCount = 1;
+var maxCount = 16;
+
+$(function(){
+$('#literal-plus').on('click', function(){
+  var inputCount = $('#literal-area .unit').length;
   if (inputCount < maxCount){
-    var element = $('#liternal-area .unit:last-child').clone(true);// 末尾をイベントごと複製
-    // 複製したinputのクリア
-    var inputList = element[0].querySelectorAll('input[type="text"], textarea');
+    var element = $('#literal-area .unit:last-child').clone(true);
+    var inputList = element[0].querySelectorAll('input[type="text"]');
     for (var i = 0; i < inputList.length; i++) {
       inputList[i].value = "";
     }
-    $('#liternal-area .unit').parent().append(element);// 末尾追加
+    $('#literal-area .unit').parent().append(element);
   }
 });
-// 削除
-$('.liternal-minus').on('click', function(){// イベントごと複製しているのでonのselectorは未設定
-  var inputCount = $('#liternal-area .unit').length;
+$('.literal-minus').on('click', function(){
+  var inputCount = $('#literal-area .unit').length;
   if (inputCount > minCount){
-    $(this).closest('.unit').remove();
+    $(this).parents('.unit').remove();
   }
+});
 });
 </script>
 </head>
@@ -53,9 +56,8 @@ $('.liternal-minus').on('click', function(){// イベントごと複製してい
 
 <h2> Liternals </h2>
 
- 
-  <div id="demo-area" class="form-group">
-    <div class="unit">
+  <div id="literal-area" class="form-group">
+    <div class="unit input-group mb-2">
         <table>
             <tr>
                 <td>ID</td><td><input type="text" id="id" /></td>
@@ -67,13 +69,13 @@ $('.liternal-minus').on('click', function(){// イベントごと複製してい
                 <td>Default</td><td><input type="text" id="default" /></td>
             </tr>
         </table>
-      <div class="demo-minus input-group-append">
+      <div class="literal-minus input-group-append">
         <span class="btn btn-danger">-</span>
       </div>
     </div>
   </div>
   
-  <div id="demo-plus" class="btn btn-primary">+</div>
+  <div id="literal-plus" class="btn btn-primary">+</div>
   </div>
   
 
