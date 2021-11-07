@@ -38,47 +38,58 @@ function CreateFile() {
 	<CodeSnippet Format="1.0.0">
 		<Header>
 			<Title>` + document.getElementById("title").value + `</Title>
-			<Shortcut>` + document.getElementById("shortcut").value + "</Shortcut>";
+			<Shortcut>` + document.getElementById("shortcut").value + "</Shortcut>\n";
 
             let authorValue = document.getElementById("author").value;
-            if (authorValue != "") result += "<Author>" + authorValue + "</Author>";
+            if (authorValue != "") result += "<Author>" + authorValue + "</Author>/n";
 
             result += `</Header>
 		<Snippet>
 			<Code Language="` +  document.getElementById("language").value + `">
 				<![CDATA[` + document.getElementById("code").value + `]]>
-			</Code>
-			<Declarations>`;
+			</Code>`;
             
         var inputCount = $('#literal-area .unit').length;
+        var literals = new let[0];
         for (var i = 0; i < inputCount.length; i++)
         {
-        var inputList = element[i].querySelectorAll('input[type="text"]');
-            if (inputList.element[0] == "") continue;
+            var inputList = element[i].querySelectorAll('input[type="text"]');
+                if (inputList.element[0] == "") continue;
 
-            result += `<Literal>
-          <ID>` + inputList.element[0] + `</ID>
-          <ToolTip>` + inputList.element[1] + `</ToolTip>
-          <Default>` + inputList.element[2] + `</Default>
-        </Literal>`;
+                literals += `<Literal>
+                <ID>` + inputList.element[0] + `</ID>
+                <ToolTip>` + inputList.element[1] + `</ToolTip>
+                <Default>` + inputList.element[2] + `</Default>
+            </Literal>`;
+        }
+        if (literals.length > 0){
+            result += "<Declarations>/n";
+            literals.forEach(element => result += element);
+            result += "</Declarations>/n";
         }
 
-        result += "<Imports>\n";
         var text = document.getElementById("imports").value.replace(/\r\n|\r/g, "\n");
         var lines = text.split( '\n' );
-        
+        var imports = new let[0];      
         for ( var i = 0; i < lines.length; i++ ) {
             // 空行は無視する
-            if ( lines[i] == '' ) {
-                continue;
-            }
+            if ( lines[i] == '' ) continue;
         
-            result += `<Import>
-          <Namespace>` + lines[i] + `</Namespace>
-        </Import>`;
+            imports.append(`<Import>
+            <Namespace>` + lines[i] + `</Namespace>
+            </Import>`);
         }
-        result += `</Imports>
-		</Snippet>
+        if (imports.length > 0){
+            result += "<Imports>/n";
+            imports.forEach(element => {
+                result += `<Import>
+                <Namespace>` + element + `</Namespace>
+                </Import>`;
+            });
+            result += "</Imports>/n";
+        }
+
+        result += `</Snippet>
 	</CodeSnippet>
 </CodeSnippets>`;
 
