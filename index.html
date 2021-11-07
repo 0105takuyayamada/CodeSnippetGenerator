@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>CodeSnippetGenerator</title>
+<link rel="stylesheet" href="style.css">
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="main.js">
+// 追加
+var minCount = 1;
+var maxCount = 16;
+
+$(function(){
+$('#literal-plus').on('click', function(){
+  var inputCount = $('#literal-area .unit').length;
+  if (inputCount < maxCount){
+    var element = $('#literal-area .unit:last-child').clone(true);
+    var inputList = element[0].querySelectorAll('input[type="text"]');
+    for (var i = 0; i < inputList.length; i++) {
+      inputList[i].value = "";
+    }
+    $('#literal-area .unit').parent().append(element);
+  }
+});
+$('.literal-minus').on('click', function(){
+  var inputCount = $('#literal-area .unit').length;
+  if (inputCount > minCount){
+    $(this).parents('.unit').remove();
+  }
+});
+});
+</script>
+</head>
+<body>
+<header>
+
+  <h2> Basic Infomation </h2>
+
+<table>
+  <tr>
+    <td>Title</td>
+    <td><input type="text" id="title" name="title"></td>
+  </tr>
+  <tr>
+    <td>Shortcut</td>
+    <td><input type="text" id="shortcut" name="shortcut"></td>
+  </tr>
+  <tr>
+  <td>Author</td>
+  <td><input type="text" id="author" name="author"></td>
+  </tr>
+</table>
+
+<h2> Code </h2>
+<textarea id="code" name="code"></textarea>
+
+<h2> Liternals </h2>
+
+  <div id="literal-area" class="form-group">
+    <div class="unit input-group mb-2">
+        <table>
+            <tr>
+                <td>ID</td><td><input type="text" id="id" /></td>
+            </tr>
+            <tr>
+                <td>ToolTip</td><td><input type="text" id="ToolTip" /></td>
+            </tr>
+            <tr>
+                <td>Default</td><td><input type="text" id="default" /></td>
+            </tr>
+        </table>
+        <div class="literal-minus input-group-append">
+            <span class="btn btn-danger">-</span>
+      </div>
+    </div>
+  </div>
+  
+  <input type="button" id="literal-plus" class="btn btn-primary" value="+" />
+
+  
+
+<h2> Imports </h2>
+<textarea id="imports" name="imports"></textarea>
+
+</body>
+</html><!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>CodeSnippetGenerator</title>
+<link rel="stylesheet" href="style.css">
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="main.js">
+// 追加
+var minCount = 1;
+var maxCount = 16;
+
+$(function(){
+$('#literal-plus').on('click', function(){
+  var inputCount = $('#literal-area .unit').length;
+  if (inputCount < maxCount){
+    var element = $('#literal-area .unit:last-child').clone(true);
+    var inputList = element[0].querySelectorAll('input[type="text"]');
+    for (var i = 0; i < inputList.length; i++) {
+      inputList[i].value = "";
+    }
+    $('#literal-area .unit').parent().append(element);
+  }
+});
+$('.literal-minus').on('click', function(){
+  var inputCount = $('#literal-area .unit').length;
+  if (inputCount > minCount){
+    $(this).parents('.unit').remove();
+  }
+});
+});
+</script>
+</head>
+<body>
+<header>
+
+  <h2> Basic Infomation </h2>
+
+<table>
+  <tr>
+    <td>Title</td>
+    <td><input type="text" id="title" name="title"></td>
+  </tr>
+  <tr>
+    <td>Shortcut</td>
+    <td><input type="text" id="shortcut" name="shortcut"></td>
+  </tr>
+  <tr>
+  <td>Author</td>
+  <td><input type="text" id="author" name="author"></td>
+  </tr>
+</table>
+
+<h2> Code </h2>
+<textarea id="code" name="code"></textarea>
+
+<h2> Liternals </h2>
+
+  <div id="literal-area" class="form-group">
+    <div class="unit input-group mb-2">
+        <table>
+            <tr>
+                <td>ID</td><td><input type="text" id="id" /></td>
+            </tr>
+            <tr>
+                <td>ToolTip</td><td><input type="text" id="ToolTip" /></td>
+            </tr>
+            <tr>
+                <td>Default</td><td><input type="text" id="default" /></td>
+            </tr>
+        </table>
+        <div class="literal-minus input-group-append">
+            <span class="btn btn-danger">-</span>
+      </div>
+    </div>
+  </div>
+  
+  <input type="button" id="literal-plus" class="btn btn-primary" value="+" />
+
+  
+
+<h2> Imports </h2>
+<textarea id="imports" name="imports"></textarea>
+
+</body>
+</html>
