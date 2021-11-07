@@ -49,18 +49,18 @@ function CreateFile() {
 				<![CDATA[` + document.getElementById("code").value + `]]>
 			</Code>`;
             
-        var inputCount = $('#literal-area .unit').length;
-        var literals = new let[0];
-        for (var i = 0; i < inputCount.length; i++)
+        var literalforms = $('#literal-area .unit');
+        var literals;
+        for (var i = 0; i < literalforms.length; i++)
         {
-            var inputList = element[i].querySelectorAll('input[type="text"]');
+            var inputList = literalforms[i].querySelectorAll('input[type="text"]');
                 if (inputList.element[0] == "") continue;
 
                 literals += `<Literal>
                 <ID>` + inputList.element[0] + `</ID>
                 <ToolTip>` + inputList.element[1] + `</ToolTip>
                 <Default>` + inputList.element[2] + `</Default>
-            </Literal>`;
+            </Literal>\n`;
         }
         if (literals.length > 0){
             result += "<Declarations>/n";
@@ -70,7 +70,7 @@ function CreateFile() {
 
         var text = document.getElementById("imports").value.replace(/\r\n|\r/g, "\n");
         var lines = text.split( '\n' );
-        var imports = new let[0];      
+        var imports;
         for ( var i = 0; i < lines.length; i++ ) {
             // 空行は無視する
             if ( lines[i] == '' ) continue;
