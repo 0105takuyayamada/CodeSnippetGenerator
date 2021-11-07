@@ -64,7 +64,7 @@ function CreateFile() {
         }
 
         result += "<Imports>\n";
-        var text  = document.getElementById('imports').value.replace(/\r\n|\r/g, "\n");
+        var text = document.getElementById("imports").value.replace(/\r\n|\r/g, "\n");
         var lines = text.split( '\n' );
         
         for ( var i = 0; i < lines.length; i++ ) {
