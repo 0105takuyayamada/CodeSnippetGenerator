@@ -127,7 +127,7 @@ function Download() {
 
 <div class="row">
 
-<div class="card col-md-6">
+<div class="card col-md-5">
     <div class="card-header">
     <h2> Infomation </h2>
     </div><div class="card-body">
@@ -164,17 +164,19 @@ function Download() {
 
     <div class="input-group">
         <span class="input-group-text w-25">Imports</span>
-        <textarea id="imports" class="form-control" name="imports"></textarea>
+        <textarea rows="1" id="imports" class="form-control" name="imports"></textarea>
     </div>
     <div class="input-group">
         <span class="input-group-text w-25">Code*</span>
-        <textarea id="code" class="form-control" name="code"></textarea>
+        <textarea rows="5" id="code" class="form-control" name="code"></textarea>
     </div>
+
+    <input type="button" id="download" class="btn btn-success m-3 w-100 d-block d-lg-none" value="Download" onclick="Download();" />
   </div>
 </div>
   
 </div> 
-<div class="card col-md-6">
+<div class="card col-md-5">
 
     <div class="card-header">
     <h2> Liternals </h2>
@@ -207,6 +209,6 @@ function Download() {
 
 </div>
 
-<input type="button" id="download" class="btn btn-success m-3" value="Download" onclick="Download();" />
+<input type="button" id="download" class="btn btn-success m-3 w-100 d-none d-lg-block" value="Download" onclick="Download();" />
 </body>
 </html>
