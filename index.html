@@ -130,7 +130,7 @@ function Download() {
 <div class="row">
 <div class="card">
     <div class="card-header">
-    <h2> Basic Infomation </h2>
+    <h2> Infomation </h2>
     </div><div class="card-body">
 
   <div id="basic-area" class="form-group">
@@ -148,11 +148,9 @@ function Download() {
     </div>
     <div class="input-group">
         <span class="input-group-text w-25">Language*</span>
-        <input type="text" class="form-control" id="language" value="csharp">
-
-        <select id="language" class="input-group-text w-25" value="CSharp">
-            <option value="VB">VB</option>
+        <select id="language" class="input-group-text">
             <option value="CSharp">CSharp</option>
+            <option value="VB">VB</option>
             <option value="CPP">CPP</option>
             <option value="XAML">XAML</option>
             <option value="XML">XML</option>
@@ -161,15 +159,17 @@ function Download() {
             <option value="SQL">SQL</option>
             <option value="HTML">HTML</option>
           </select>
+    </div>
 
+    <div style="margin-bottom: 1em;" />>
+
+    <div class="input-group">
+        <span class="input-group-text w-25">Imports</span>
+        <textarea id="imports" class="form-control" name="imports"></textarea>
     </div>
     <div class="input-group">
         <span class="input-group-text w-25">Code*</span>
         <textarea id="code" class="form-control" name="code"></textarea>
-    </div>
-    <div class="input-group">
-        <span class="input-group-text w-25">Imports</span>
-        <textarea id="imports" class="form-control" name="imports"></textarea>
     </div>
   </div>
 
@@ -192,7 +192,7 @@ function Download() {
             <span class="input-group-text w-25">Default</span>
             <input type="text" class="form-control" id="default">
         </div>
-        <div class="demo-minus input-group-append" style="text-align: left;">
+        <div class="demo-minus input-group-append">
             <span class="btn btn-danger">×</span>
         </div>
     </div>
@@ -200,9 +200,11 @@ function Download() {
   
   <input type="button" id="literal-plus" class="btn btn-primary w-100" value="Add Literal" />
 
-    </div></div>
+</div></div>
 
-    <input type="button" id="download" class="btn btn-success" value="Download" onclick="Download();" />
+<div style="margin-bottom: 0.5em;" />>
+<input type="button" id="download" class="btn btn-success" style="height:200%;" value="Download" onclick="Download();" />
+<div style="margin-bottom: 0.5em;" />>
 
 </div>
 </body>
