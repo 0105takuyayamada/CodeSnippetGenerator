@@ -48,7 +48,8 @@ function CreateFile() {
 
             result += `</Header>
 		<Snippet>
-			<Code Language="` + document.getElementById("language").value + `">
+            var langObject = document.getElementById("language");
+			<Code Language="` + langObject.options[langObject.selectedIndex].text + `">
 				<![CDATA[` + document.getElementById("code").value + `]]>
 			</Code>
             `;
@@ -148,15 +149,29 @@ function Download() {
     <div class="input-group">
         <span class="input-group-text w-25">Language*</span>
         <input type="text" class="form-control" id="language" value="csharp">
+
+        <select id="language" class="input-group-text w-25" value="CSharp">
+            <option value="VB">VB</option>
+            <option value="CSharp">CSharp</option>
+            <option value="CPP">CPP</option>
+            <option value="XAML">XAML</option>
+            <option value="XML">XML</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="TypeScript">TypeScript</option>
+            <option value="SQL">SQL</option>
+            <option value="HTML">HTML</option>
+          </select>
+
+    </div>
+    <div class="input-group">
+        <span class="input-group-text w-25">Code*</span>
+        <textarea id="code" class="form-control" name="code"></textarea>
+    </div>
+    <div class="input-group">
+        <span class="input-group-text w-25">Imports</span>
+        <textarea id="imports" class="form-control" name="imports"></textarea>
     </div>
   </div>
-
-    </div></div><div class="card">
-    <div class="card-header">
-    <h2> Code*</h2>
-    </div><div class="card-body">
-
-<textarea id="code" class="form-control" name="code"></textarea>
 
     </div></div><div class="card">
     <div class="card-header">
@@ -177,20 +192,13 @@ function Download() {
             <span class="input-group-text w-25">Default</span>
             <input type="text" class="form-control" id="default">
         </div>
-        <div class="demo-minus input-group-append text-right">
+        <div class="demo-minus input-group-append" style="text-align: left;">
             <span class="btn btn-danger">×</span>
         </div>
     </div>
   </div>
   
   <input type="button" id="literal-plus" class="btn btn-primary w-100" value="Add Literal" />
-
-    </div></div><div class="card">
-    <div class="card-header">
-    <h2> Imports </h2>
-    </div><div class="card-body">
-
-    <textarea id="imports" class="form-control" name="imports"></textarea>
 
     </div></div>
 
