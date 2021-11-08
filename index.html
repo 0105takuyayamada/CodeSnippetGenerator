@@ -40,7 +40,7 @@ function CreateFile() {
 			<Shortcut>` + document.getElementById("shortcut").value + "</Shortcut>\n";
 
             let authorValue = document.getElementById("author").value;
-            if (authorValue != "") result += "<Author>" + authorValue + "</Author>/n";
+            if (authorValue != null) result += "<Author>" + authorValue + "</Author>n";
 
             result += `</Header>
 		<Snippet>
@@ -53,27 +53,27 @@ function CreateFile() {
         for (var i = 0; i < literalforms.length; i++)
         {
             var inputList = literalforms[i].querySelectorAll('input[type="text"], textarea');
-                if (inputList[0] == "") continue;
+                if (inputList[0].value == null) continue;
 
                 literals += `<Literal>
-                <ID>` + inputList[0] + `</ID>
-                <ToolTip>` + inputList[1] + `</ToolTip>
-                <Default>` + inputList[2] + `</Default>
+                <ID>` + inputList[0].value + `</ID>
+                <ToolTip>` + inputList[1].value + `</ToolTip>
+                <Default>` + inputList[2].value + `</Default>
             </Literal>\n`;
         }
-        if (literals != "") result += "<Declarations>/n" + literals + "</Declarations>/n";
+        if (literals != "") result += "<Declarations>\n" + literals + "</Declarations>\n";
 
         var text = document.getElementById("imports").value.replace(/\r\n|\r/g, "\n");
         var lines = text.split( '\n' );
         var imports;
         for ( var i = 0; i < lines.length; i++ ) {
-            if ( lines[i] == '') continue;
+            if ( lines[i] == null) continue;
         
             imports += `<Import>
             <Namespace>` + lines[i] + `</Namespace>
-            </Import>/n`;
+            </Import>\n`;
         }
-        if (imports != "") result += "<Imports>/n" + imports + "</Imports>/n";
+        if (imports != "") result += "<Imports>\n" + imports + "</Imports>\n";
 
         result += `</Snippet>
 	</CodeSnippet>
@@ -162,7 +162,7 @@ function Download() {
     </div>
   </div>
   
-  <input type="button" id="literal-plus" class="btn btn-primary" value="Add Literal" />
+  <input type="button" id="literal-plus" class="btn btn-primary w-100" value="Add Literal" />
 
     </div></div><div class="card">
     <div class="card-header">
