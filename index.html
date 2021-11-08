@@ -11,7 +11,7 @@ var minliteralCount = 1;
 var maxliteralCount = 16;
 var literalAreas;
 
-$(function(){
+$(function() {
 
     $('#literal-plus').on('click', function() {
         var element = $('#literal-area .unit:last-child').clone(true);
@@ -52,7 +52,7 @@ function CreateFile() {
         var literals;
         for (var i = 0; i < literalforms.length; i++)
         {
-            var inputList = literalforms[i].querySelectorAll('input[type="text"]');
+            var inputList = literalforms[i].querySelectorAll('input[type="text"], textarea');
                 if (inputList.element[0] == "") continue;
 
                 literals += `<Literal>
@@ -61,7 +61,7 @@ function CreateFile() {
                 <Default>` + inputList.element[2] + `</Default>
             </Literal>\n`;
         }
-        if (literals.length > 0){
+        if (literals.length > 0) {
             result += "<Declarations>/n";
             literals.forEach(element => result += element);
             result += "</Declarations>/n";
@@ -71,14 +71,13 @@ function CreateFile() {
         var lines = text.split( '\n' );
         var imports;
         for ( var i = 0; i < lines.length; i++ ) {
-            // 空行は無視する
-            if ( lines[i] == '' ) continue;
+            if ( lines[i] == '') continue;
         
             imports.append(`<Import>
             <Namespace>` + lines[i] + `</Namespace>
             </Import>`);
         }
-        if (imports.length > 0){
+        if (imports.length > 0) {
             result += "<Imports>/n";
             imports.forEach(element => {
                 result += `<Import>
