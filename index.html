@@ -17,6 +17,9 @@ $(function(){
       var inputCount = $('#literal-area .unit').length;
       if (inputCount < maxliteralCount) {
         var element = $('#literal-area .unit:last-child').clone(true);
+
+        console.log(element);
+
         var inputList = element[0].querySelectorAll('input[type="text"]');
         for (var i = 0; i < inputList.length; i++) {
           inputList[i].value = "";
@@ -50,7 +53,7 @@ function CreateFile() {
 				<![CDATA[` + document.getElementById("code").value + `]]>
 			</Code>`;
             
-        var literalforms = $('#literal-area .unit').querySelectorAll(`.form-group`);
+        var literalforms = document.querySelectorAll(`.literal-area`);
         var literals;
         for (var i = 0; i < literalforms.length; i++)
         {
