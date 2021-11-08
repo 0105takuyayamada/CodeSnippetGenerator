@@ -55,11 +55,14 @@ function CreateFile() {
             
         var literalforms = $('#literal-area .unit');
         var literals = "";
+        var literalFlag = false;
+
         for (var i = 0; i < literalforms.length; i++)
         {
             var inputList = literalforms[i].querySelectorAll('input[type="text"], textarea');
-                if (inputList[0].value == null) continue;
+                if (inputList[0].value == "") continue;
 
+                literalFlag = true;
                 literals += `<Literal>
                 <ID>` + inputList[0].value + `</ID>
                 <ToolTip>` + inputList[1].value + `</ToolTip>
@@ -67,7 +70,7 @@ function CreateFile() {
             </Literal>
             `;
         }
-        if (literals != "") {
+        if (literalFlag) {
             result += `<Declarations>
             ` + literals + `</Declarations>
             `;
@@ -76,14 +79,18 @@ function CreateFile() {
         var text = document.getElementById("imports").value.replace(/\r\n|\r/g, "\n");
         var lines = text.split( '\n' );
         var imports = "";
+        var importFlag = false;
         for ( var i = 0; i < lines.length; i++ ) {
-            if ( lines[i] == null) continue;
-        
+            if ( lines[i] == "") continue;
+
+            importFlag = true;
+
             imports += `<Import>
             <Namespace>` + lines[i] + `</Namespace>
-            </Import>\n`;
+            </Import>
+            `;
         }
-        if (imports != "") {
+        if (importFlag) {
             result += `<Imports>
             ` + imports + `</Imports>
             `;
@@ -127,11 +134,11 @@ function Download() {
 
   <div id="basic-area" class="form-group">
     <div class="input-group">
-        <span class="input-group-text w-25">Title</span>
+        <span class="input-group-text w-25">Title*</span>
         <input type="text" class="form-control" id="title">
     </div>
     <div class="input-group">
-        <span class="input-group-text w-25">Shortcut</span>
+        <span class="input-group-text w-25">Shortcut*</span>
         <input type="text" class="form-control" id="shortcut">
     </div>
     <div class="input-group">
@@ -139,14 +146,14 @@ function Download() {
         <input type="text" class="form-control" id="author">
     </div>
     <div class="input-group">
-        <span class="input-group-text w-25">Language</span>
+        <span class="input-group-text w-25">Language*</span>
         <input type="text" class="form-control" id="language" value="csharp">
     </div>
   </div>
 
     </div></div><div class="card">
     <div class="card-header">
-    <h2> Code </h2>
+    <h2> Code*</h2>
     </div><div class="card-body">
 
 <textarea id="code" class="form-control" name="code"></textarea>
