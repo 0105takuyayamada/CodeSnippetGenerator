@@ -61,11 +61,7 @@ function CreateFile() {
                 <Default>` + inputList[2] + `</Default>
             </Literal>\n`;
         }
-        if (literals.length > 0) {
-            result += "<Declarations>/n";
-            for (var i = 0; i < literals.length; i++) result += literals[i];
-            result += "</Declarations>/n";
-        }
+        if (literals != "") result += "<Declarations>/n" + literals + "</Declarations>/n";
 
         var text = document.getElementById("imports").value.replace(/\r\n|\r/g, "\n");
         var lines = text.split( '\n' );
@@ -77,15 +73,7 @@ function CreateFile() {
             <Namespace>` + lines[i] + `</Namespace>
             </Import>/n`;
         }
-        if (imports != "") {
-            result += "<Imports>/n";
-            imports.forEach(element => {
-                result += `<Import>
-                <Namespace>` + element + `</Namespace>
-                </Import>`;
-            });
-            result += "</Imports>/n";
-        }
+        if (imports != "") result += "<Imports>/n" + imports + "</Imports>/n";
 
         result += `</Snippet>
 	</CodeSnippet>
@@ -169,7 +157,7 @@ function Download() {
             <input type="text" class="form-control" id="default">
         </div>
         <div class="demo-minus input-group-append">
-            <span class="btn btn-danger w-25">Remove</span>
+            <span class="btn btn-danger">×</span>
         </div>
     </div>
   </div>
