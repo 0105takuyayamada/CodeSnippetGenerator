@@ -48,7 +48,7 @@ function CreateFile() {
 				<![CDATA[` + document.getElementById("code").value + `]]>
 			</Code>`;
             
-        var literalforms = document.querySelectorAll(`.literal-area`);
+        var literalforms = $('#literal-area .unit');
         var literals;
         for (var i = 0; i < literalforms.length; i++)
         {
@@ -164,10 +164,13 @@ function Download() {
             <span class="input-group-text">Default</span>
             <input type="text" class="form-control" id="default">
         </div>
+        <div class="demo-minus input-group-append">
+            <span class="btn btn-danger">Remove Literal</span>
+        </div>
     </div>
   </div>
   
-  <input type="button" id="literal-plus" class="btn btn-primary" value="+" />
+  <input type="button" id="literal-plus" class="btn btn-primary" value="Add Literal" />
 
 </div><div class="row">
 
