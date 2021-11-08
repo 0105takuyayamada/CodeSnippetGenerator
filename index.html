@@ -53,12 +53,12 @@ function CreateFile() {
         for (var i = 0; i < literalforms.length; i++)
         {
             var inputList = literalforms[i].querySelectorAll('input[type="text"], textarea');
-                if (inputList.element[0] == "") continue;
+                if (inputList[0] == "") continue;
 
                 literals += `<Literal>
-                <ID>` + inputList.element[0] + `</ID>
-                <ToolTip>` + inputList.element[1] + `</ToolTip>
-                <Default>` + inputList.element[2] + `</Default>
+                <ID>` + inputList[0] + `</ID>
+                <ToolTip>` + inputList[1] + `</ToolTip>
+                <Default>` + inputList[2] + `</Default>
             </Literal>\n`;
         }
         if (literals.length > 0) {
@@ -120,51 +120,63 @@ function Download() {
 <h1>Visual Studio Code Snippet Generator</h1>
 
 </div><div class="row">
-  <h2> Basic Infomation </h2>
 
-<table>
-  <tr>
-    <td>Title</td>
-    <td><input type="text" id="title" name="title"></td>
-  </tr>
-  <tr>
-    <td>Shortcut</td>
-    <td><input type="text" id="shortcut" name="shortcut"></td>
-  </tr>
-  <tr>
-  <td>Author</td>
-  <td><input type="text" id="author" name="author"></td>
-  </tr>
-  <td>Language</td>
-  <td><input type="text" id="language" name="language" value="csharp"></td>
-  </tr>
-</table>
+<div class="card">
+    <div class="card-header">
+    <h2> Basic Infomation </h2>
+    </div><div class="card-body">
+
+  <div id="basic-area" class="form-group">
+    <div class="input-group">
+        <span class="input-group-text col-xs-3">Title</span>
+        <input type="text" class="form-control" id="title">
+    </div>
+    <div class="input-group">
+        <span class="input-group-text col-xs-3">Shortcut</span>
+        <input type="text" class="form-control" id="shortcut">
+    </div>
+    <div class="input-group">
+        <span class="input-group-text col-xs-3">Author</span>
+        <input type="text" class="form-control" id="author">
+    </div>
+    <div class="input-group">
+        <span class="input-group-text col-xs-3">Language</span>
+        <input type="text" class="form-control" id="language">
+    </div>
+  </div>
 
 </div><div class="row">
 
-<h2> Code </h2>
+</div><div class="card">
+    <div class="card-header">
+    <h2> Code </h2>
+    </div><div class="card-body">
+
 <textarea id="code" name="code"></textarea>
 
 </div><div class="row">
 
-<h2> Liternals </h2>
+</div><div class="card">
+    <div class="card-header">
+    <h2> Liternals </h2>
+    </div><div class="card-body">
 
   <div id="literal-area" class="form-group">
     <div class="unit">
         <div class="input-group">
-            <span class="input-group-text">ID</span>
+            <span class="input-group-text col-xs-3">ID</span>
             <input type="text" class="form-control" id="id">
         </div>
         <div class="input-group">
-            <span class="input-group-text">ToolTip</span>
+            <span class="input-group-text col-xs-3">ToolTip</span>
             <input type="text" class="form-control" id="toolTip">
         </div>
         <div class="input-group">
-            <span class="input-group-text">Default</span>
+            <span class="input-group-text col-xs-3">Default</span>
             <input type="text" class="form-control" id="default">
         </div>
         <div class="demo-minus input-group-append">
-            <span class="btn btn-danger">Remove Literal</span>
+            <span class="btn btn-danger col-xs-3">Remove</span>
         </div>
     </div>
   </div>
@@ -173,9 +185,14 @@ function Download() {
 
 </div><div class="row">
 
-<h2> Imports </h2>
+</div><div class="card">
+    <div class="card-header">
+    <h2> Imports </h2>
+    </div><div class="card-body">
+
 <textarea id="imports" name="imports"></textarea>
 
+</div>
 </div><div class="row">
 
 <input type="button" id="download" class="btn btn-success" value="Download" onclick="Download();" />
