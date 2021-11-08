@@ -123,9 +123,9 @@ function Download() {
 </head>
 <body>
 
-<h1>Visual Studio Code Snippet Generator</h1>
+<h1 style="text-align: center;">Visual Studio Code Snippet Generator</h1>
 
-<div class="container" style="max-width:992px;">
+<div class="container" style="max-width:576px;">
 
 <div class="row">
 <div class="card">
@@ -192,19 +192,17 @@ function Download() {
             <span class="input-group-text w-25">Default</span>
             <input type="text" class="form-control" id="default">
         </div>
-        <div class="literal-minus input-group-append" style="margin-left:auto;">
-            <span class="btn btn-danger">×</span>
+        <div class="literal-minus input-group-append">
+            <span class="btn btn-secondary rounded-3 rounded-bottom">×</span>
         </div>
     </div>
   </div>
   
-  <input type="button" id="literal-plus" class="btn btn-primary w-100" value="Add Literal" />
+  <input type="button" id="literal-plus" class="btn btn-primary w-100 mt-2" value="Add Literal" />
 
 </div></div>
 
-<div style="margin-bottom: 0.5em;" />
-<input type="button" id="download" class="btn btn-success" style="height: 200%;" value="Download" onclick="Download();" />
-<div style="margin-bottom: 0.5em;" />
+<input type="button" id="download" class="btn btn-success m-3" value="Download" onclick="Download();" />
 
 </div>
 </body>
