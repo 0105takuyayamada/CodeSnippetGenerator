@@ -73,11 +73,11 @@ function CreateFile() {
         for ( var i = 0; i < lines.length; i++ ) {
             if ( lines[i] == '') continue;
         
-            imports.append(`<Import>
+            imports += `<Import>
             <Namespace>` + lines[i] + `</Namespace>
-            </Import>`);
+            </Import>/n`;
         }
-        if (imports.length > 0) {
+        if (imports != "") {
             result += "<Imports>/n";
             imports.forEach(element => {
                 result += `<Import>
@@ -125,19 +125,19 @@ function Download() {
 
   <div id="basic-area" class="form-group">
     <div class="input-group">
-        <span class="input-group-text col-xs-3">Title</span>
+        <span class="input-group-text w-25">Title</span>
         <input type="text" class="form-control" id="title">
     </div>
     <div class="input-group">
-        <span class="input-group-text col-xs-3">Shortcut</span>
+        <span class="input-group-text w-25">Shortcut</span>
         <input type="text" class="form-control" id="shortcut">
     </div>
     <div class="input-group">
-        <span class="input-group-text col-xs-3">Author</span>
+        <span class="input-group-text w-25">Author</span>
         <input type="text" class="form-control" id="author">
     </div>
     <div class="input-group">
-        <span class="input-group-text col-xs-3">Language</span>
+        <span class="input-group-text w-25">Language</span>
         <input type="text" class="form-control" id="language" value="csharp">
     </div>
   </div>
@@ -147,7 +147,7 @@ function Download() {
     <h2> Code </h2>
     </div><div class="card-body">
 
-<textarea id="code" name="code"></textarea>
+<textarea id="code" class="form-control" name="code"></textarea>
 
     </div></div><div class="card">
     <div class="card-header">
@@ -157,19 +157,19 @@ function Download() {
   <div id="literal-area" class="form-group">
     <div class="unit">
         <div class="input-group">
-            <span class="input-group-text col-xs-3">ID</span>
+            <span class="input-group-text w-25">ID</span>
             <input type="text" class="form-control" id="id">
         </div>
         <div class="input-group">
-            <span class="input-group-text col-xs-3">ToolTip</span>
+            <span class="input-group-text w-25">ToolTip</span>
             <input type="text" class="form-control" id="toolTip">
         </div>
         <div class="input-group">
-            <span class="input-group-text col-xs-3">Default</span>
+            <span class="input-group-text w-25">Default</span>
             <input type="text" class="form-control" id="default">
         </div>
         <div class="demo-minus input-group-append">
-            <span class="btn btn-danger col-xs-3">Remove</span>
+            <span class="btn btn-danger w-25">Remove</span>
         </div>
     </div>
   </div>
@@ -181,7 +181,7 @@ function Download() {
     <h2> Imports </h2>
     </div><div class="card-body">
 
-    <textarea id="imports" name="imports"></textarea>
+    <textarea id="imports" class="form-control" name="imports"></textarea>
 
     </div></div>
 
