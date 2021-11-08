@@ -14,21 +14,21 @@ var literalAreas;
 $(function(){
 
     $('#literal-plus').on('click', function() {
-      var inputCount = $('#literal-area .unit').length;
-      if (inputCount < maxliteralCount) {
-        var element = $('#literal-area .unit:last-child').clone(true);
+      var literalAreas = $(`.literal-area`);
+      if (literalAreas.length < maxliteralCount) {
+        var element = literalAreas[0].clone(true);
 
-        console.log(element);
+        console.log(element.length);
 
         var inputList = element[0].querySelectorAll('input[type="text"]');
         for (var i = 0; i < inputList.length; i++) {
           inputList[i].value = "";
         }
-        $('#literal-area .unit').parent().append(element);
+        $('.literal-area .unit').parent().append(element);
       }
     });
     $('.literal-minus').on('click', function() {
-      var inputCount = $('#literal-area .unit').length;
+      var inputCount = $('.literal-area .unit').length;
       if (inputCount > minliteralCount) {
         $(this).parents('.unit').remove();
       }
@@ -155,7 +155,7 @@ function Download() {
 
 <h2> Liternals </h2>
 
-  <div id="literal-area" class="form-group">
+  <div class="literal-area form-group">
     <div class="input-group">
         <span class="input-group-text">ID</span>
         <input type="text" class="form-control" id="id">
