@@ -63,7 +63,7 @@ function CreateFile() {
         }
         if (literals.length > 0) {
             result += "<Declarations>/n";
-            literals.forEach(element => result += element);
+            for (var i = 0; i < literals.length; i++) result += literals[i];
             result += "</Declarations>/n";
         }
 
