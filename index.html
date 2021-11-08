@@ -37,19 +37,24 @@ function CreateFile() {
 	<CodeSnippet Format="1.0.0">
 		<Header>
 			<Title>` + document.getElementById("title").value + `</Title>
-			<Shortcut>` + document.getElementById("shortcut").value + "</Shortcut>\n";
+			<Shortcut>` + document.getElementById("shortcut").value + `</Shortcut>
+            `;
 
             let authorValue = document.getElementById("author").value;
-            if (authorValue != null) result += "<Author>" + authorValue + "</Author>n";
+            if (authorValue != null) {
+                result += `<Author>` + authorValue + `</Author>
+            `;
+            }
 
             result += `</Header>
 		<Snippet>
 			<Code Language="` + document.getElementById("language").value + `">
 				<![CDATA[` + document.getElementById("code").value + `]]>
-			</Code>`;
+			</Code>
+            `;
             
         var literalforms = $('#literal-area .unit');
-        var literals;
+        var literals = "";
         for (var i = 0; i < literalforms.length; i++)
         {
             var inputList = literalforms[i].querySelectorAll('input[type="text"], textarea');
@@ -59,13 +64,18 @@ function CreateFile() {
                 <ID>` + inputList[0].value + `</ID>
                 <ToolTip>` + inputList[1].value + `</ToolTip>
                 <Default>` + inputList[2].value + `</Default>
-            </Literal>\n`;
+            </Literal>
+            `;
         }
-        if (literals != "") result += "<Declarations>\n" + literals + "</Declarations>\n";
+        if (literals != "") {
+            result += `<Declarations>
+            ` + literals + `</Declarations>
+            `;
+        }
 
         var text = document.getElementById("imports").value.replace(/\r\n|\r/g, "\n");
         var lines = text.split( '\n' );
-        var imports;
+        var imports = "";
         for ( var i = 0; i < lines.length; i++ ) {
             if ( lines[i] == null) continue;
         
@@ -73,10 +83,14 @@ function CreateFile() {
             <Namespace>` + lines[i] + `</Namespace>
             </Import>\n`;
         }
-        if (imports != "") result += "<Imports>\n" + imports + "</Imports>\n";
+        if (imports != "") {
+            result += `<Imports>
+            ` + imports + `</Imports>
+            `;
+        }
 
         result += `</Snippet>
-	</CodeSnippet>
+    </CodeSnippet>
 </CodeSnippets>`;
 
 return result;
@@ -156,7 +170,7 @@ function Download() {
             <span class="input-group-text w-25">Default</span>
             <input type="text" class="form-control" id="default">
         </div>
-        <div class="demo-minus input-group-append">
+        <div class="demo-minus input-group-append text-right">
             <span class="btn btn-danger">×</span>
         </div>
     </div>
