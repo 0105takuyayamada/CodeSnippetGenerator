@@ -45,10 +45,10 @@ function CreateFile() {
                 result += `<Author>` + authorValue + `</Author>
             `;
             }
-
+            
+            var langObject = document.getElementById("language");
             result += `</Header>
 		<Snippet>
-            var langObject = document.getElementById("language");
 			<Code Language="` + langObject.options[langObject.selectedIndex].value + `">
 				<![CDATA[` + document.getElementById("code").value + `]]>
 			</Code>
