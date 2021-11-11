@@ -49,7 +49,8 @@ function CreateFile() {
             result += `</Header>
 		<Snippet>
             var langObject = document.getElementById("language");
-			<Code Language="` + langObject.options[langObject.selectedIndex].text + `">
+            var selectLangIndex = langObject.selectedIndex;
+			<Code Language="` + langObject.options[selectLangIndex].text + `">
 				<![CDATA[` + document.getElementById("code").value + `]]>
 			</Code>
             `;
