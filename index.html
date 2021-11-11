@@ -8,7 +8,7 @@
 <script type="text/javascript">
 
 var minliteralCount = 1;
-var maxliteralCount = 16;
+var maxliteralCount = 32;
 var literalAreas;
 
 $(function() {
@@ -49,8 +49,7 @@ function CreateFile() {
             result += `</Header>
 		<Snippet>
             var langObject = document.getElementById("language");
-            var selectLangIndex = langObject.selectedIndex;
-			<Code Language="` + langObject.options[selectLangIndex].text + `">
+			<Code Language="` + langObject.options[langObject.selectedIndex].value + `">
 				<![CDATA[` + document.getElementById("code").value + `]]>
 			</Code>
             `;
