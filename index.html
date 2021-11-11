@@ -45,7 +45,7 @@ function CreateFile() {
                 result += `<Author>` + authorValue + `</Author>
             `;
             }
-            
+
             var langObject = document.getElementById("language");
             result += `</Header>
 		<Snippet>
@@ -114,7 +114,7 @@ function Download() {
 
     
     a.href = url;
-    a.download = document.getElementById("title").value + ".codesnippet";
+    a.download = document.getElementById("title").value + ".snippet";
     a.click();
     window.URL.revokeObjectURL(url);
     a.parentNode.removeChild(a);
