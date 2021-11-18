@@ -38,12 +38,12 @@ function CreateFile() {
 		<Header>
 			<Title>` + document.getElementById("title").value + `</Title>
 			<Shortcut>` + document.getElementById("shortcut").value + `</Shortcut>
-            `;
+`;
 
             let authorValue = document.getElementById("author").value;
             if (authorValue != null) {
                 result += `<Author>` + authorValue + `</Author>
-            `;
+`;
             }
 
             var langObject = document.getElementById("language");
@@ -51,7 +51,7 @@ function CreateFile() {
 		<Snippet><Code Language="` + langObject.options[langObject.selectedIndex].value + `">
 		<![CDATA[` + document.getElementById("code").value + `]]>
 		</Code>
-            `;
+`;
             
         var literalforms = $('#literal-area .unit');
         var literals = "";
@@ -68,12 +68,12 @@ function CreateFile() {
                 <ToolTip>` + inputList[1].value + `</ToolTip>
                 <Default>` + inputList[2].value + `</Default>
             </Literal>
-            `;
+`;
         }
         if (literalFlag) {
             result += `<Declarations>
             ` + literals + `</Declarations>
-            `;
+`;
         }
 
         var text = document.getElementById("imports").value.replace(/\r\n|\r/g, "\n");
@@ -85,19 +85,19 @@ function CreateFile() {
 
             importFlag = true;
 
-            imports += `                <Import>
+            imports += `
+	    <Import>
                     <Namespace>` + lines[i] + `</Namespace>
-                </Import>
-            `;
+                </Import>`;
         }
         if (importFlag) {
-            result += `            <Imports>
+            result += `<Imports>
 		` + imports + `
             </Imports>
-            `;
+`;
         }
 
-        result += `        </Snippet>
+        result += `</Snippet>
     </CodeSnippet>
 </CodeSnippets>`;
 
