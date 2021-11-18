@@ -42,15 +42,16 @@ function CreateFile() {
 
             let authorValue = document.getElementById("author").value;
             if (authorValue != null) {
-                result += `<Author>` + authorValue + `</Author>
+                result += `			<Author>` + authorValue + `</Author>
 `;
             }
 
             var langObject = document.getElementById("language");
-            result += `</Header>
+            result += `		</Header>
 		<Snippet><Code Language="` + langObject.options[langObject.selectedIndex].value + `">
 		<![CDATA[` + document.getElementById("code").value + `]]>
 		</Code>
+
 `;
             
         var literalforms = $('#literal-area .unit');
@@ -73,6 +74,7 @@ function CreateFile() {
         if (literalFlag) {
             result += `<Declarations>
             ` + literals + `</Declarations>
+
 `;
         }
 
@@ -86,19 +88,19 @@ function CreateFile() {
             importFlag = true;
 
             imports += `
-	    <Import>
-                    <Namespace>` + lines[i] + `</Namespace>
-                </Import>`;
+				<Import>
+					` + lines[i] + `</Namespace>
+				</Import>`;
         }
         if (importFlag) {
             result += `<Imports>
 		` + imports + `
-            </Imports>
+			</Imports>
 `;
         }
 
-        result += `</Snippet>
-    </CodeSnippet>
+        result += `		</Snippet>
+	</CodeSnippet>
 </CodeSnippets>`;
 
 return result;
