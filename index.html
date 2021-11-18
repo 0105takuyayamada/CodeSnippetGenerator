@@ -49,9 +49,9 @@ function CreateFile() {
             var langObject = document.getElementById("language");
             result += `</Header>
 		<Snippet>
-			<Code Language="` + langObject.options[langObject.selectedIndex].value + `">
-				<![CDATA[` + document.getElementById("code").value + `]]>
-			</Code>
+		<Code Language="` + langObject.options[langObject.selectedIndex].value + `">
+		<![CDATA[` + document.getElementById("code").value + `]]>
+		</Code>
             `;
             
         var literalforms = $('#literal-area .unit');
@@ -86,8 +86,8 @@ function CreateFile() {
 
             importFlag = true;
 
-            imports += `<Import>
-            <Namespace>` + lines[i] + `</Namespace>
+            imports += `	<Import>
+            	<Namespace>` + lines[i] + `</Namespace>
             </Import>
             `;
         }
