@@ -13,7 +13,7 @@ var literalAreas;
 
 $(function() {
 
-    $('#literal-plus').on('click', function() {
+    $('.literal-plus').on('click', function() {
         var element = $('#literal-area .unit:last-child').clone(true);
 
         var inputList = element[0].querySelectorAll('input[type="text"], textarea');
@@ -184,7 +184,7 @@ function Download() {
     <h2> Liternals </h2>
     </div><div class="card-body">
 		
-  <input type="button" id="literal-plus" class="btn btn-success w-100 mt-1" value="Add Literal" />
+  <input type="button" class="literal-plus btn btn-success w-100 md-1" value="Add Literal" />
   <div id="literal-area" class="form-group">
     <div class="unit mb-1">
         <div class="input-group">
@@ -200,11 +200,11 @@ function Download() {
             <input type="text" class="form-control" id="default">
         </div>
         <div class="literal-minus input-group-append w-25">
-            <span class="btn btn-secondary" style="border-radius: 0 0 0.5rem 0.5rem; height:50%;">×</span>
+            <span class="btn btn-secondary w-100" style="border-radius: 0 0 0.5rem 0.5rem; height:50%;">×</span>
         </div>
     </div>
   </div> 
-  <input type="button" id="literal-plus" class="btn btn-success w-100 mt-1" value="Add Literal" />
+  <input type="button" class="literal-plus btn btn-success w-100 mt-1" value="Add Literal" />
 
 </div>
 </div>
