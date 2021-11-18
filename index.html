@@ -48,9 +48,9 @@ function CreateFile() {
 
             var langObject = document.getElementById("language");
             result += `		</Header>
-		<Snippet><Code Language="` + langObject.options[langObject.selectedIndex].value + `">
-		<![CDATA[` + document.getElementById("code").value + `]]>
-		</Code>
+		<Snippet>
+      <Code Language="` + langObject.options[langObject.selectedIndex].value + `">
+        <![CDATA[` + document.getElementById("code").value + `]]></Code>
 
 `;
             
@@ -89,12 +89,12 @@ function CreateFile() {
 
             imports += `				<Import>
 					<Namespace>` + lines[i] + `</Namespace>
-				</Import>`;
+				</Import>
+`;
         }
         if (importFlag) {
-            result += `		<Imports>
-` + imports + `
-			</Imports>
+            result += `			<Imports>
+` + imports + `			</Imports>
 `;
         }
 
