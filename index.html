@@ -8,7 +8,7 @@
 <script type="text/javascript">
 
 var minliteralCount = 1;
-var maxliteralCount = 32;
+var maxliteralCount = 256;
 var literalAreas;
 
 $(function() {
@@ -173,7 +173,7 @@ function Download() {
         <textarea rows="5" id="code" class="form-control" name="code"></textarea>
     </div>
 
-    <input type="button" id="download" class="btn btn-success mt-3 md-3 w-100 d-none d-md-block" value="Download" onclick="Download();" />
+    <input type="button" id="download" class="btn btn-primary mt-3 md-3 w-100 d-none d-md-block" value="Download" onclick="Download();" />
   </div>
 </div>
   
@@ -183,7 +183,8 @@ function Download() {
     <div class="card-header">
     <h2> Liternals </h2>
     </div><div class="card-body">
-
+		
+  <input type="button" id="literal-plus" class="btn btn-success w-100 mt-1" value="Add Literal" />
   <div id="literal-area" class="form-group">
     <div class="unit mb-1">
         <div class="input-group">
@@ -202,16 +203,15 @@ function Download() {
             <span class="btn btn-secondary" style="border-radius: 0 0 0.5rem 0.5rem; height:50%;">×</span>
         </div>
     </div>
-  </div>
-  
-  <input type="button" id="literal-plus" class="btn btn-primary w-100 mt-1" value="Add Literal" />
+  </div> 
+  <input type="button" id="literal-plus" class="btn btn-success w-100 mt-1" value="Add Literal" />
 
 </div>
 </div>
 
 </div>
 
-<input type="button" id="download" class="btn btn-success row w-100 d-block d-md-none" value="Download" onclick="Download();" />
+<input type="button" id="download" class="btn btn-primary row w-100 d-block d-md-none" value="Download" onclick="Download();" />
 
 </div>
 </body>
