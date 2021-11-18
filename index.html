@@ -48,8 +48,7 @@ function CreateFile() {
 
             var langObject = document.getElementById("language");
             result += `</Header>
-		<Snippet>
-		<Code Language="` + langObject.options[langObject.selectedIndex].value + `">
+		<Snippet><Code Language="` + langObject.options[langObject.selectedIndex].value + `">
 		<![CDATA[` + document.getElementById("code").value + `]]>
 		</Code>
             `;
@@ -86,18 +85,19 @@ function CreateFile() {
 
             importFlag = true;
 
-            imports += `	<Import>
-            	<Namespace>` + lines[i] + `</Namespace>
-            </Import>
+            imports += `                <Import>
+                    <Namespace>` + lines[i] + `</Namespace>
+                </Import>
             `;
         }
         if (importFlag) {
-            result += `<Imports>
-            ` + imports + `</Imports>
+            result += `            <Imports>
+		` + imports + `
+            </Imports>
             `;
         }
 
-        result += `</Snippet>
+        result += `        </Snippet>
     </CodeSnippet>
 </CodeSnippets>`;
 
