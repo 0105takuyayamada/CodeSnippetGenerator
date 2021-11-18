@@ -73,7 +73,7 @@ function CreateFile() {
         }
         if (literalFlag) {
             result += `		<Declarations>
-            ` + literals + `		</Declarations>
+` + literals + `		</Declarations>
 
 `;
         }
@@ -93,7 +93,7 @@ function CreateFile() {
         }
         if (importFlag) {
             result += `		<Imports>
-		` + imports + `
+` + imports + `
 			</Imports>
 `;
         }
@@ -198,8 +198,8 @@ function Download() {
             <span class="input-group-text w-25">Default</span>
             <input type="text" class="form-control" id="default">
         </div>
-        <div class="literal-minus input-group-append">
-            <span class="btn btn-secondary w-25" style="border-radius: 0 0 0.5rem 0.5rem; height:50%;">×</span>
+        <div class="literal-minus input-group-append w-25">
+            <span class="btn btn-secondary" style="border-radius: 0 0 0.5rem 0.5rem; height:50%;">×</span>
         </div>
     </div>
   </div>
