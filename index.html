@@ -63,16 +63,16 @@ function CreateFile() {
                 if (inputList[0].value == "") continue;
 
                 literalFlag = true;
-                literals += `			<Literal>
-				<ID>` + inputList[0].value + `</ID>
-				<ToolTip>` + inputList[1].value + `</ToolTip>
-				<Default>` + inputList[2].value + `</Default>
-			</Literal>
+                literals += `				<Literal>
+					<ID>` + inputList[0].value + `</ID>
+					<ToolTip>` + inputList[1].value + `</ToolTip>
+					<Default>` + inputList[2].value + `</Default>
+				</Literal>
 `;
         }
         if (literalFlag) {
-            result += `		<Declarations>
-` + literals + `		</Declarations>
+            result += `			<Declarations>
+` + literals + `			</Declarations>
 
 `;
         }
