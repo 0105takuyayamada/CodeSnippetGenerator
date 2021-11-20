@@ -14,24 +14,24 @@ var literalAreas;
 $(function() {
 
     $('.literal-plus').on('click', function() {
-        var element = $('#literal-area .unit:last-child').clone(true);
+        let element = $('#literal-area .unit:last-child').clone(true);
 
-        var inputList = element[0].querySelectorAll('input[type="text"], textarea');
-        for (var i = 0; i < inputList.length; i++) {
+        let inputList = element[0].querySelectorAll('input[type="text"], textarea');
+        for (let i = 0; i < inputList.length; i++) {
             inputList[i].value = "";
         }
         $('#literal-area .unit').parent().append(element);
     });
     
     $('.literal-minus').on('click', function() {
-        var inputCount = $('#literal-area .unit').length;
+        let inputCount = $('#literal-area .unit').length;
         if (inputCount > minliteralCount) {
             $(this).parents('.unit').remove();
         }
 	else {
-	    var element = $('#literal-area .unit:last-child');
-	    var inputList = element[0].querySelectorAll('input[type="text"], textarea');
-	    for (var i = 0; i < inputList.length; i++) {
+        let element = $('#literal-area .unit:last-child');
+        let inputList = element[0].querySelectorAll('input[type="text"], textarea');
+        for (let i = 0; i < inputList.length; i++) {
                 inputList[i].value = "";
             }
 	}
@@ -39,77 +39,65 @@ $(function() {
 });
 
 function CreateFile() {
-    let result = `<?xml version="1.0" encoding="utf-8"?>
-<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
-	<CodeSnippet Format="1.0.0">
-		<Header>
-			<Title>` + document.getElementById("title").value + `</Title>
-			<Shortcut>` + document.getElementById("shortcut").value + `</Shortcut>
-`;
+    let result = '<?xml version="1.0" encoding="utf-8"?>\n'
+        + '<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">\n'
+        + '\t<CodeSnippet Format="1.0.0">\n'
+        + "\t\t<Header>\n"
+        + "\t\t\t<Title>" + document.getElementById("title").value + "</Title>\n"
+        + "\t\t\t<Shortcut>" + document.getElementById("shortcut").value + "</Shortcut>\n";
 
-            let authorValue = document.getElementById("author").value;
-            if (authorValue != null) {
-                result += `			<Author>` + authorValue + `</Author>
-`;
-            }
-
-            var langObject = document.getElementById("language");
-            result += `		</Header>
-		<Snippet>
-			<Code Language="` + langObject.options[langObject.selectedIndex].value + `">
-				<![CDATA[` + document.getElementById("code").value + `]]></Code>
-			
-`;
+    let authorValue = document.getElementById("author").value;
+    if (authorValue != null) result += "\t\t\t<Author>" + authorValue + "</Author>\n"
+    let langObject = document.getElementById("language");
+    result += "\t\t\t</Header>\n"
+    + "\t\t<Snippet>\n"
+    + '\t\t\t<Code Language="' + langObject.options[langObject.selectedIndex].value
+    + '">\n\t\t\t\t<![CDATA[' + document.getElementById("code").value + "]]></Code>\n\n";
             
-        var literalforms = $('#literal-area .unit');
-        var literals = "";
-        var literalFlag = false;
+    result += GetLiteralsText();
+    result += GetImportsText();
 
-        for (var i = 0; i < literalforms.length; i++)
-        {
-            var inputList = literalforms[i].querySelectorAll('input[type="text"], textarea');
-                if (inputList[0].value == "") continue;
+    result += "\t\t</Snippet>\n\t</CodeSnippet>\n</CodeSnippets>";                
+    return result;
+}
 
-                literalFlag = true;
-                literals += `				<Literal>
-					<ID>` + inputList[0].value + `</ID>
-					<ToolTip>` + inputList[2].value + `</ToolTip>
-					<Default>` + inputList[1].value + `</Default>
-				</Literal>
-`;
+function GetLiteralsText() {
+    let lines = document.getElementById("declarations").value.replace(/\r\n|\r/g, "\n").split( '\n' );
+    let literals = "";
+    let literalFlag = false;
+    let index = 0;
+
+    for (let i = 0; i < lines.length; i++) {
+        if (lines[i] == "") {
+            if (index == 0) continue;
+            index = 0;
+            literals += "\t\t\t\t</Literal>\n";
+            continue;
         }
-        if (literalFlag) {
-            result += `			<Declarations>
-` + literals + `			</Declarations>
+        literalFlag = true;
 
-`;
+        switch (index) {
+            case 0: literals += "\t\t\t\t<Literal>\n\t\t\t\t\t<ID>" + lines[i] + "</ID>\n"; break;
+            case 1: literals += "\t\t\t\t\t<Default>" + lines[i] + "</Default>\n"; break;
+            case 2: literals += "\t\t\t\t\t<ToolTip>" + lines[i] + "</ToolTip>\n"; break;
         }
+        index++;
+    }
+    if (literalFlag) return "\t\t\t\t</Literal>\n\t\t\t<Declarations>\n" + literals +  "\t\t\t</Declarations>\n\n";
+    return "";
+}
 
-        var text = document.getElementById("imports").value.replace(/\r\n|\r/g, "\n");
-        var lines = text.split( '\n' );
-        var imports = "";
-        var importFlag = false;
-        for ( var i = 0; i < lines.length; i++ ) {
-            if ( lines[i] == "") continue;
-
-            importFlag = true;
-
-            imports += `				<Import>
-					<Namespace>` + lines[i] + `</Namespace>
-				</Import>
-`;
-        }
-        if (importFlag) {
-            result += `			<Imports>
-` + imports + `			</Imports>
-`;
-        }
-
-        result += `		</Snippet>
-	</CodeSnippet>
-</CodeSnippets>`;
-
-return result;
+function GetImportsText() {
+    let lines = document.getElementById("imports").value.replace(/\r\n|\r/g, "\n").split( '\n' );
+    let imports = "";
+    let importFlag = false;
+    for (let i = 0; i < lines.length; i++ ) {
+        if ( lines[i] == "") continue;
+        importFlag = true;
+        imports += "\t\t\t\t<Import><Namespace>" + lines[i] + "</Namespace></Import>\n";
+    }
+    if (importFlag) return "\t\t\t<Imports>\n" + imports + "\t\t\t</Imports>\n\n";
+    return "";
 }
 
 function Download() {
@@ -119,107 +107,93 @@ function Download() {
 
     const blob = new Blob([CreateFile()], { type: "octet/stream" });
     const url = window.URL.createObjectURL(blob);
- 
+
     result.href = url;
     result.download = document.getElementById("title").value + ".snippet";
     result.click();
     window.URL.revokeObjectURL(url);
     result.parentNode.removeChild(result);
-  }
+}
+
 </script>
 
-</head>
-<body>
+</head><body>
 <div class="container">
+    <div class="card">
+        <div class="card-header"><h1 style="text-align: center;">Visual Studio Code Snippet Generator</h1></div>
+        <div class="card-body">
 
-<h1 style="text-align: center;">Visual Studio Code Snippet Generator</h1>
+            <div id="basic-area" class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-text w-25">Title*</span>
+                            <input type="text" class="form-control" id="title">
+                    </div>
+                <div class="input-group">
+                    <span class="input-group-text w-25">Shortcut*</span>
+                    <input type="text" class="form-control" id="shortcut">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text w-25">Author</span>
+                    <input type="text" class="form-control" id="author">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text w-25">Language*</span>
+                    <select id="language" class="input-group-text">
+                        <option value="CSharp">CSharp</option>
+                        <option value="VB">VB</option>
+                        <option value="CPP">CPP</option>
+                        <option value="XAML">XAML</option>
+                        <option value="XML">XML</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="TypeScript">TypeScript</option>
+                        <option value="SQL">SQL</option>
+                        <option value="HTML">HTML</option>
+                    </select>
+                </div>
 
-<div class="row">
+                <div style="margin-bottom: 1em;"></div>
 
-<div class="card col-md-7">
-    <div class="card-header">
-    <h2> Infomation </h2>
-    </div><div class="card-body">
+                <div class="input-group">
+                    <span class="input-group-text w-25">
+                        <div class="mt-1 ml-1 h-100" style="text-align: left;">Imports</div></span>
+                    <textarea rows="1" id="imports" class="form-control" name="imports" placeholder='Example: System' wrap="off"></textarea>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text w-25">
+                        <div class="mt-1 ml-1 h-100" style="text-align: left;">
+                            Code<br>
+                            <div class="text-black-50">
+                                Reserved words
+                                <ul>
+                                    <li>$selected$</li>
+                                    <li>$end$</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </span>
+                    <textarea rows="5" id="code" class="form-control" name="code" wrap="off"></textarea>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text w-25">
+                        <div class="mt-1 ml-1 h-100" style="text-align: left;">
+                            Declarations<br>
+                            <div class="text-black-50">
+                                Elements
+                                <ul>
+                                    <li>Literal(Necessary)</li>
+                                    <li>Default(Optional)</li>
+                                    <li>ToolTip(Optional)</li>
+                                    <li>[line break](Necessary)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </span>
+                    <textarea rows="5" id="declarations" class="form-control" name="code" wrap="off"></textarea>
+                </div>
 
-  <div id="basic-area" class="form-group">
-    <div class="input-group">
-        <span class="input-group-text w-25">Title*</span>
-        <input type="text" class="form-control" id="title">
-    </div>
-    <div class="input-group">
-        <span class="input-group-text w-25">Shortcut*</span>
-        <input type="text" class="form-control" id="shortcut">
-    </div>
-    <div class="input-group">
-        <span class="input-group-text w-25">Author</span>
-        <input type="text" class="form-control" id="author">
-    </div>
-    <div class="input-group">
-        <span class="input-group-text w-25">Language*</span>
-        <select id="language" class="input-group-text">
-            <option value="CSharp">CSharp</option>
-            <option value="VB">VB</option>
-            <option value="CPP">CPP</option>
-            <option value="XAML">XAML</option>
-            <option value="XML">XML</option>
-            <option value="JavaScript">JavaScript</option>
-            <option value="TypeScript">TypeScript</option>
-            <option value="SQL">SQL</option>
-            <option value="HTML">HTML</option>
-          </select>
-    </div>
-
-    <div style="margin-bottom: 1em;"></div>
-
-    <div class="input-group">
-        <span class="input-group-text w-25">Imports</span>
-        <textarea rows="1" id="imports" class="form-control" name="imports" placeholder='Example: System' wrap="off"></textarea>
-    </div>
-    <div class="input-group">
-        <span class="input-group-text w-25">Code*</span>
-        <textarea rows="5" id="code" class="form-control" name="code" placeholder='Reserved words: $selected$ $end$' wrap="off"></textarea>
-    </div>
-
-    <input type="button" id="download" class="btn btn-primary mt-3 md-3 w-100 d-none d-md-block" value="Download" onclick="Download();" />
-  </div>
-</div>
-  
-</div> 
-<div class="card col-md-5">
-
-    <div class="card-header">
-    <h2> Liternals </h2>
-    </div><div class="card-body">
-		
-  <input type="button" class="literal-plus btn btn-success w-100 mb-2" value="Add Literal" />
-  <div id="literal-area" class="form-group">
-    <div class="unit mb-1">
-        <div class="input-group">
-            <span class="input-group-text w-25">ID</span>
-            <input type="text" class="form-control" id="id">
-        </div>
-	<div class="input-group">
-            <span class="input-group-text w-25">Default</span>
-            <input type="text" class="form-control" id="default">
-        </div>
-        <div class="input-group">
-            <span class="input-group-text w-25">ToolTip</span>
-            <input type="text" class="form-control" id="toolTip">
-        </div>
-        <div class="literal-minus input-group-append w-25">
-            <span class="btn btn-secondary w-100" style="border-radius: 0 0 0.5rem 0.5rem; height:50%;">×</span>
+                <input type="button" id="download" class="btn btn-primary mt-3 md-3 w-100 d-none d-md-block" value="Download" onclick="Download();" />
+            </div>
         </div>
     </div>
-  </div> 
-  <input type="button" class="literal-plus btn btn-success w-100 mt-1" value="Add Literal" />
-
 </div>
-</div>
-
-</div>
-
-<input type="button" id="download" class="btn btn-primary row w-100 d-block d-md-none" value="Download" onclick="Download();" />
-
-</div>
-</body>
-</html>
+</body></html>
