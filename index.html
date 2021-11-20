@@ -83,7 +83,7 @@ function GetLiteralsText() {
         }
         index++;
     }
-    if (literalFlag) return "\t\t\t\t</Literal>\n\t\t\t<Declarations>\n" + literals +  "\t\t\t</Declarations>\n\n";
+    if (literalFlag) return "\t\t\t<Declarations>\n" + literals +  "\t\t\t\t</Literal>\n\t\t\t</Declarations>\n\n";
     return "";
 }
 
