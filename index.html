@@ -70,6 +70,7 @@ function GetLiteralsText() {
     for (let i = 0; i < lines.length; i++) {
         if (lines[i] == "") {
             if (index == 0) continue;
+            if (index == 1) literals += "\t\t\t\t\t<Default></Default>\n";
             index = 0;
             literals += "\t\t\t\t</Literal>\n";
             continue;
