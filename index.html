@@ -128,7 +128,7 @@ function Download() {
 }
 
 function GetExportURL() {
-	const url = new URL(window.location);
+	const url = new URL("https://yamara-mh.github.io/CodeSnippetGenerator/");
 	
 	const title = document.getElementById('title').value;
 	if (title.length > 0) url.searchParams.append("title", title);
