@@ -37,6 +37,12 @@ $(function() {
 	}
     });
 
+	let params = new URL(window.location.href).searchParams;
+	document.getElementById('title').value = params.get('title');
+	document.getElementById('shortcut').value = params.get('shortcut');
+	document.getElementById('author').value = params.get('author');
+	document.getElementById('imports').value = params.get('imports');
+
 	/*
 	let params = new URL(window.location.href).searchParams;
 	document.getElementById('title').textContent = params.get('title');
