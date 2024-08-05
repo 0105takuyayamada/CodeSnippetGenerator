@@ -128,9 +128,10 @@ function Download() {
 }
 
 function GetExportURL() {
-	let exportUrl = "https://yamara-mh.github.io/CodeSnippetGenerator/";
-	let title = document.getElementById('title').value;
-	if (title.length > 0) exportUrl += "?title=" + title;
+	const url = new URL(window.location);
+	
+	const title = document.getElementById('title').value;
+	if (title.length > 0) url.searchParams.append("title", title);
 	/*
 	document.getElementById('title').value = params.get('title');
 	document.getElementById('shortcut').value = params.get('shortcut');
@@ -140,7 +141,7 @@ function GetExportURL() {
 	document.getElementById('code').value = params.get('code');
 	document.getElementById('declarations').value = params.get('declarations');
  */
-	navigator.clipboard.writeText(exportUrl).then(()=>{}, ()=>{alert("Export to clipboard failed")});
+	navigator.clipboard.writeText(url.href).then(()=>{}, ()=>{alert("Export to clipboard failed")});
 }
 
 </script>
@@ -226,7 +227,7 @@ ToolTip'></textarea>
                 </div>
 
                 <input type="button" id="download" class="btn btn-primary mt-3 md-3 w-100" value="Download" onclick="Download();" />
-                <input type="button" id="exportURL" class="btn btn-primary mt-3 md-3 w-100" value="Copy the shared URL to your clipboard" onclick="GetExportURL();" />
+                <input type="button" id="exportURL" class="btn btn-secondary mt-3 md-3 w-100" value="Copy the shared URL to your clipboard" onclick="GetExportURL();" />
             </div>
         </div>
     </div>
