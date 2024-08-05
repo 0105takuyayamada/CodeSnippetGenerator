@@ -45,17 +45,6 @@ $(function() {
 	document.getElementById('language').value = params.get('language');
 	document.getElementById('code').value = params.get('code');
 	document.getElementById('declarations').value = params.get('declarations');
-
-	/*
-	let params = new URL(window.location.href).searchParams;
-	document.getElementById('title').textContent = params.get('title');
-	document.getElementById('shortcut').textContent = params.get('shortcut');
-	document.getElementById('author').textContent = params.get('author');
-	document.getElementById('imports').textContent = params.get('imports');
-	document.getElementById('language').textContent = params.get('language');
-	document.getElementById('code').textContent = params.get('code');
-	document.getElementById('declarations').textContent = params.get('declarations');
-	*/
 });
 
 function CreateData() {
@@ -136,6 +125,12 @@ function Download() {
     result.parentNode.removeChild(result);
 
     console.log("Downloaded");
+}
+
+function GetExportURL() {
+	let exportUrl = "https://yamara-mh.github.io/CodeSnippetGenerator/";
+	
+	navigator.clipboard.writeText(exportUrl).then(()=>{}, ()=>{alert("Export to clipboard failed")});
 }
 
 </script>
@@ -221,6 +216,7 @@ ToolTip'></textarea>
                 </div>
 
                 <input type="button" id="download" class="btn btn-primary mt-3 md-3 w-100" value="Download" onclick="Download();" />
+                <input type="button" id="exportURL" class="btn btn-primary mt-3 md-3 w-100" value="Copy the shared URL to your clipboard" onclick="GetExportURL();" />
             </div>
         </div>
     </div>
