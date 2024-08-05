@@ -129,7 +129,17 @@ function Download() {
 
 function GetExportURL() {
 	let exportUrl = "https://yamara-mh.github.io/CodeSnippetGenerator/";
-	
+	let title = document.getElementById('title').value;
+	if (title.length > 0) exportUrl += "?title=" + title;
+	/*
+	document.getElementById('title').value = params.get('title');
+	document.getElementById('shortcut').value = params.get('shortcut');
+	document.getElementById('author').value = params.get('author');
+	document.getElementById('imports').value = params.get('imports');
+	document.getElementById('language').value = params.get('language');
+	document.getElementById('code').value = params.get('code');
+	document.getElementById('declarations').value = params.get('declarations');
+ */
 	navigator.clipboard.writeText(exportUrl).then(()=>{}, ()=>{alert("Export to clipboard failed")});
 }
 
