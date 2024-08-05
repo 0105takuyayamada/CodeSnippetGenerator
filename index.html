@@ -132,15 +132,19 @@ function GetExportURL() {
 	
 	const title = document.getElementById('title').value;
 	if (title.length > 0) url.searchParams.append("title", title);
-	/*
-	document.getElementById('title').value = params.get('title');
-	document.getElementById('shortcut').value = params.get('shortcut');
-	document.getElementById('author').value = params.get('author');
-	document.getElementById('imports').value = params.get('imports');
-	document.getElementById('language').value = params.get('language');
-	document.getElementById('code').value = params.get('code');
-	document.getElementById('declarations').value = params.get('declarations');
- */
+	const shortcut = document.getElementById('shortcut').value;
+	if (shortcut.length > 0) url.searchParams.append("shortcut", shortcut);
+	const author = document.getElementById('author').value;
+	if (author.length > 0) url.searchParams.append("author", author);
+	const imports = document.getElementById('imports').value;
+	if (imports.length > 0) url.searchParams.append("imports", imports);
+	const language = document.getElementById('language').value;
+	if (language.length > 0) url.searchParams.append("language", language);
+	const code = document.getElementById('code').value;
+	if (code.length > 0) url.searchParams.append("code", code);
+	const declarations = document.getElementById('declarations').value;
+	if (declarations.length > 0) url.searchParams.append("declarations", declarations);
+
 	navigator.clipboard.writeText(url.href).then(()=>{}, ()=>{alert("Export to clipboard failed")});
 }
 
