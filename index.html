@@ -78,7 +78,7 @@ function GetLiteralsText() {
     for (let i = 0; i < lines.length; i++) {
         if (lines[i] == "") {
             if (index == 0) continue;
-            if (index == 1) literals += "\t\t\t\t\t<Default>" + lines[0] + "</Default>\n";
+            if (index == 1) literals += "\t\t\t\t\t<Default>" + lines[i - 1] + "</Default>\n";
             index = 0;
             literals += "\t\t\t\t</Literal>\n";
             continue;
@@ -91,6 +91,8 @@ function GetLiteralsText() {
             case 2: literals += "\t\t\t\t\t<ToolTip>" + lines[i] + "</ToolTip>\n"; break;
         }
         index++;
+	    
+    	if (i == lines.length - 1 && index == 1) literals += "\t\t\t\t\t<Default>" + lines[lines.length - 1] + "</Default>\n";
     }
     if (literalFlag) return "\t\t\t<Declarations>\n" + literals +  "\t\t\t\t</Literal>\n\t\t\t</Declarations>\n\n";
     return "";
