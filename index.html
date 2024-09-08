@@ -8,7 +8,6 @@
 <script type="text/javascript">
 
 var minliteralCount = 1;
-var maxliteralCount = 256;
 var literalAreas;
 
 $(function() {
@@ -79,7 +78,7 @@ function GetLiteralsText() {
     for (let i = 0; i < lines.length; i++) {
         if (lines[i] == "") {
             if (index == 0) continue;
-            if (index == 1) literals += "\t\t\t\t\t<Default></Default>\n";
+            if (index == 1) literals += "\t\t\t\t\t<Default>" + lines[0] + "</Default>\n";
             index = 0;
             literals += "\t\t\t\t</Literal>\n";
             continue;
